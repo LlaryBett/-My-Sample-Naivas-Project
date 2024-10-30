@@ -1,0 +1,516 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+/* Header styles */
+header {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed; /* Fix header */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+h1 {
+    margin: 0;
+    padding-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #f4b400; /* Add hover color effect */
+}
+
+/* Dropdown button styling */
+.dropbtn {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover {
+    background-color: #444; /* Darker hover effect */
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Dropdown Links */
+.dropdown-content a {
+    color: black; /* Text color */
+    padding: 12px 16px; /* Padding for links */
+    text-decoration: none; /* No underline */
+    display: block; /* Block display for full clickable area */
+    border-bottom: 1px solid #e0e0e0; /* Bottom border for separation */
+    transition: background-color 0.3s, color 0.3s, transform 0.2s; /* Transition for hover effects */
+}
+
+/* Last link without bottom border */
+.dropdown-content a:last-child {
+    border-bottom: none; /* Remove bottom border from last link */
+}
+
+/* Dropdown Link Hover Effect */
+.dropdown-content a:hover {
+    background-color: #007bff; /* Change background to primary color on hover */
+    color: white; /* Change text color on hover */
+    transform: translateX(5px); /* Slight right shift on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow on hover */
+}
+
+/* Main content styles */
+main {
+    padding: 100px 20px 20px; /* Add padding for fixed header */
+}
+
+/* Hero section */
+#hero {
+    background: #007bff;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Categories */
+#categories {
+    margin: 20px 0;
+}
+
+.category-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.category {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    flex: 1 0 30%;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.category:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+    border: 2px solid #007bff;
+}
+
+/* Deals Section Styles */
+section {
+    margin: 20px 0;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+/* Deal Card Styles */
+.deal, .seller {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    flex: 1 0 30%;
+    text-align: center;
+    transition: transform 0.3s ease; /* Add hover effect for deals */
+}
+
+.deal:hover, .seller:hover {
+    transform: scale(1.05);
+}
+#popular-deals {
+    padding: 20px; /* Same padding as weekly deals */
+    background-color: #f5f5f5; /* Same background color */
+}
+
+#popular-deals h2 {
+    text-align: center; /* Centered title */
+    font-size: 24px; /* Same font size */
+    margin-bottom: 20px; /* Same margin */
+}
+
+
+/* Footer */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.footer-column {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.footer-column h4 {
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin: 5px 0;
+}
+
+.footer-column ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #f4b400;
+    text-decoration: underline;
+}
+
+/* Search bar */
+#search-bar {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Cart icon styles */
+#cart-icon {
+    position: relative;
+    font-size: 18px;
+    color: #fff;
+}
+
+#cart-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 12px;
+}
+
+/* Order tracking styles */
+#order-tracking {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#order-tracking input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#order-tracking button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#order-tracking button:hover {
+    background-color: #0056b3;
+}
+
+#order-status {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* Newsletter styles */
+#newsletter-signup {
+    margin: 20px 0;
+}
+
+#newsletter-email {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 250px;
+}
+
+#subscribe-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform transition */
+    font-size: 16px; /* Increased font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
+}
+
+#subscribe-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+#subscribe-button:active {
+    transform: translateY(1px); /* Pressed effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Revert shadow on click */
+}
+
+#subscribe-button:focus {
+    outline: none; /* Remove default outline */
+    border: 2px solid #0056b3; /* Add custom border on focus */
+}
+
+
+/* Carousel Section */
+#carousel-section {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between categories and carousel */
+    margin-top: 20px; /* Add margin on top */
+}
+
+/* Product Categories on Left */
+#product-categories {
+    width: 25%; /* 25% width for the categories section */
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+/* Individual Category Styling */
+.category {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.category:hover {
+    background-color: #eee;
+    transform: scale(1.05); /* Slight zoom on hover */
+    border: 1px solid #007bff;
+}
+
+/* Carousel Container */
+/* Carousel Container */
+#carousel {
+    position: relative;
+    width: 70%; /* Set width of the carousel */
+    height: 400px; /* Adjust height for better image display */
+    overflow: hidden; /* Hide overflow for sliding effect */
+    margin: 0 auto; /* Center the carousel */
+}
+
+/* Individual Carousel Slides */
+.carousel-slide {
+    display: none; /* Hide all slides by default */
+    width: 100%; /* Full width for each slide */
+    height: 100%; /* Full height for each slide */
+    transition: opacity 0.5s ease; /* Smooth transition */
+}
+
+/* Active Slide */
+.carousel-slide.active {
+    display: block; /* Show the active slide */
+    opacity: 1; /* Fully visible */
+}
+
+/* Ensure all carousel images have the same size */
+.carousel-slide img {
+    width: 100%;         /* Full width */
+    height: 100%;        /* Full height */
+    object-fit: cover;   /* Ensure aspect ratio is maintained, crop if necessary */
+    object-position: center;
+}
+
+/* Navigation Buttons */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 18px;
+    border-radius: 50%; /* Circular button shape */
+    transition: background-color 0.3s ease;
+}
+
+/* Left Button */
+.carousel-button.left {
+    left: 20px;
+}
+
+/* Right Button */
+.carousel-button.right {
+    right: 20px;
+}
+
+/* Button Hover Effects */
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Carousel Dots */
+.carousel-indicators {
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+
+/* Individual Dot */
+.carousel-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Active Dot */
+.carousel-indicator.active {
+    background-color: #007bff;
+}
+
+/* Dot Hover Effect */
+.carousel-indicator:hover {
+    background-color: #333;
+}
+
+/* RESPONSIVENESS */
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    #carousel {
+        width: 100%; /* Make carousel full width on mobile */
+        height: 250px; /* Adjust height for smaller screens */
+    }
+
+    .carousel-button {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+
+    .carousel-indicator {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+ 

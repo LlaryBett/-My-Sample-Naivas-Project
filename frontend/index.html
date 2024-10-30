@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naivas E-Commerce Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sections.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Naivas</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li>
+                    <div class="dropdown">
+                        <button class="dropbtn">Product Categories</button>
+                        <div class="dropdown-content">
+                            <a href="#">Electronics</a>
+                            <a href="#">Fashion</a>
+                            <a href="#">Home Appliances</a>
+                            <a href="#">Books</a>
+                            <a href="#">Sports</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="#" id="cart-icon">🛒 Cart <span id="cart-count">0</span></a></li>
+                <li><a href="logins.html"><i class="fas fa-user"></i> Sign in/Register</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    
+
+    <main>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for products..." />
+            <button type="button" onclick="performSearch()">Search</button>
+        </div>
+        <section id="hero">
+            <h2>Shop the Latest Products!</h2>
+            <p>Find the best deals and offers on our website.</p>
+        </section>
+    </section>
+     <!-- New Flexbox Layout for Categories and Carousel -->
+     <section id="carousel-section">
+        <!-- Product Categories (Left Side) -->
+        <div id="product-categories">
+            <h2>Product Categories</h2>
+            <div class="category-list">
+                <div class="category">Electronics</div>
+                <div class="category">Fashion</div>
+                <div class="category">Home Appliances</div>
+                <div class="category">Books</div>
+                <div class="category">Sports</div>
+            </div>
+        </div>
+    
+        <!-- Carousel (Right Side) -->
+        <div id="carousel">
+            <div class="carousel-slides">
+                <div class="carousel-slide active">
+                    <img src="\frontend\images\discount.jpg" alt="Banner 1" style="width:100%; height:100%;">
+                </div>
+                <div class="carousel-slide">
+                    <img src="\frontend\images\sports (1).jpeg" alt="Banner 2" style="width:100%; height:100%;">
+                </div>
+                <div class="carousel-slide">
+                    <img src="\frontend\images\electronics(1).jpeg" alt="Banner 3" style="width:100%; height:100%;">
+                </div>
+            </div>
+            
+            <!-- Carousel Navigation -->
+            <button class="carousel-button left" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="carousel-button right" onclick="changeSlide(1)">&#10095;</button>
+        
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <span class="carousel-indicator active" onclick="currentSlide(1)"></span>
+                <span class="carousel-indicator" onclick="currentSlide(2)"></span>
+                <span class="carousel-indicator" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+    </section>
+    
+        
+      
+    <section id="popular-deals">
+        <h2>Most Popular Deals</h2>
+        <div class="popular-deals-container">
+            <button class="nav-button left" onclick="scrollPopularDeals(-1)">&#10094;</button>
+            <div class="popular-deals-list">
+                <div class="deal">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-43mY78LP_VRkXDkkdmPmfIokhYMRxTnlXg&s" alt="Smart TV" />
+                    <h3>Smart TV</h3>
+                    <p>Deal Price: $499</p>
+                    <button onclick="addToCart('Smart TV', 499)">Add to Cart</button> 
+                </div>
+                <div class="deal">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfUKlVimEmRAvbNPceadqx46wWd3sumtTlqg&s" alt="Gaming Laptop" />
+                    <h3>Gaming Laptop</h3>
+                    <p>Deal Price: $999</p>
+                    <button onclick="addToCart('Gaming Laptop', 999)">Add to Cart</button>
+                </div>
+                <div class="deal">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPxSlIfvmIFCDw_9TQEKst3zXhsTrkG7w5mA&s" alt="Smartwatch Deluxe" />
+                    <h3>Smartwatch Deluxe</h3>
+                    <p>Deal Price: $199</p>
+                    <button onclick="addToCart('Smartwatch Deluxe', 199)">Add to Cart</button>
+                </div>
+                <div class="deal">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNC1BRgmx1QCTEnuBbtT3NGZ-Kqsu7glzQZg&s" alt="Bluetooth Speaker Pro" />
+                    <h3>Bluetooth Speaker Pro</h3>
+                    <p>Deal Price: $89</p>
+                    <button onclick="addToCart('Bluetooth Speaker Pro', 89)">Add to Cart</button>
+                </div>
+            </div>
+            <button class="nav-button right" onclick="scrollPopularDeals(1)">&#10095;</button>
+        </div>
+    </section>
+    
+    
+
+       
+        <section id="order-tracking">
+            <h2>Track Your Order</h2>
+            <form onsubmit="trackOrder(event)">
+                <label for="order-number">Enter Order Number:</label>
+                <input type="text" id="order-number" placeholder="Order Number" required>
+                <button type="submit">Track Order</button>
+            </form>
+            <p id="order-status"></p>
+        </section>
+    </main>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-product-name"></h2>
+            <p id="modal-product-price"></p>
+            <p id="modal-product-description"></p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Newsletter Sign Up Section -->
+    <div id="newsletter-signup" style="text-align: center; margin: 20px 0;">
+        <p>Stay updated with our latest offers!</p>
+        <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+        <button id="subscribe-button">Sign Up for Newsletter</button>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Customer Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Shipping</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="#">Company Info</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Social Media</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

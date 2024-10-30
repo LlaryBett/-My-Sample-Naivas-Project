@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="auth.js" defer></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('assets/background.jpg'); /* Add your background image path */
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #007bff;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            flex: 1;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            margin: 0 5px;
+        }
+
+        .tab button:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 15px;
+            width: 100%;
+            text-align: left; /* Align labels to the left */
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            width: calc(100% - 80px); /* Adjust width to leave space for button */
+            box-sizing: border-box;
+        }
+
+        button.show-password {
+            position: absolute;
+            right: 10px; /* Position the button to the right */
+            top: 50%;
+            transform: translateY(-50%);
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 8px 12px;
+            font-size: 14px;
+            margin-left: 10px; /* Space between input and button */
+            transition: background-color 0.3s;
+        }
+
+        button.show-password:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="submit"] {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .switch {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .switch a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .switch a:hover {
+            text-decoration: underline;
+        }
+
+        .social-login {
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .social-login i {
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        /* Facebook */
+        .social-facebook {
+            background-color: #3b5998;
+        }
+
+        .social-facebook:hover {
+            background-color: #2d4373;
+        }
+
+        /* Twitter */
+        .social-twitter {
+            background-color: #1da1f2;
+        }
+
+        .social-twitter:hover {
+            background-color: #1a91da;
+        }
+
+        /* Google */
+        .social-google {
+            background-color: #db4437;
+        }
+
+        .social-google:hover {
+            background-color: #c13522;
+        }
+
+        .terms {
+            font-size: 12px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .terms input {
+            margin-right: 5px;
+        }
+
+        .welcome-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome Back!</h2>
+        <p class="welcome-message">Please enter your details below:</p>
+        <div class="tab">
+            <button onclick="showForm('signin')">Login</button>
+            <button onclick="showForm('register')">Create Account</button>
+        </div>
+
+        <div id="signin" class="form-content" style="display: block;">
+            <form id="signinForm">
+                <div class="input-container">
+                    <label for="signinUsername">Username (Email or Phone Number)</label>
+                    <input type="text" id="signinUsername" name="signinUsername" required>
+                </div>
+                <div class="input-container">
+                    <label for="signinPassword">Password</label>
+                    <input type="password" id="signinPassword" name="signinPassword" required>
+                    <button type="button" class="show-password" id="toggleSigninPassword" onclick="togglePassword('signinPassword')">Show</button>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="switch">
+                Don't have an account? <a href="#" onclick="showForm('register')">Create one</a>
+            </div>
+            <div class="social-login">
+                <i class="fab fa-facebook social-facebook" title="Sign in with Facebook"></i>
+                <i class="fab fa-twitter social-twitter" title="Sign in with Twitter"></i>
+                <i class="fab fa-google social-google" title="Sign in with Google"></i>
+            </div>
+        </div>
+
+        <div id="register" class="form-content" style="display: none;">
+            <form id="registerForm">
+                <div class="input-container">
+                    <label for="registerUsername">Username (Email or Phone Number)</label>
+                    <input type="text" id="registerUsername" name="registerUsername" required>
+                </div>
+                <div class="input-container">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" name="registerPassword" required>
+                    <button type="button" class="show-password" id="toggleRegisterPassword" onclick="togglePassword('registerPassword')">Show</button>
+                </div>
+                <div class="input-container">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <button type="button" class="show-password" id="toggleConfirmPassword" onclick="togglePassword('confirmPassword')">Show</button>
+                </div>
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the <a href="#">terms and conditions</a></label>
+                </div>
+                <button type="submit">Create Account</button>
+            </form>
+            <div class="switch">
+                Already have an account? <a href="#" onclick="showForm('signin')">Login here</a>
+            </div>
+            <div class="social-login">
+                <i class="fab fa-facebook social-facebook" title="Sign up with Facebook"></i>
+                <i class="fab fa-twitter social-twitter" title="Sign up with Twitter"></i>
+                <i class="fab fa-google social-google" title="Sign up with Google"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showForm(formType) {
+            const signinForm = document.getElementById('signin');
+            const registerForm = document.getElementById('register');
+
+            if (formType === 'signin') {
+                signinForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else if (formType === 'register') {
+                signinForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = document.getElementById(`toggle${inputId.charAt(0).toUpperCase() + inputId.slice(1)}`);
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.innerText = 'Hide'; // Change button text
+            } else {
+                input.type = 'password';
+                button.innerText = 'Show'; // Change button text
+            }
+        }
+    </script>
+</body>
+</html>
